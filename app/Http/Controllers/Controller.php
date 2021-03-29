@@ -27,22 +27,14 @@ class Controller extends BaseController
         $this->testPipeline = $testPipeline;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function testPost(Request $request): JsonResponse
     {
-        $whitelist = [
-            'name',
-            'age',
-        ];
-
-        $overrides = [
-            'first_name' => 'name',
-        ];
-
-        $requestPayload = (new TestRequestPayload($whitelist, $overrides))->hydratePost($request->post());
-
-        $response = $this->testPipeline
-                         ->process(TestPipeline::TEST_PIPELINE, $requestPayload)
-                         ->format();
+        $payload = (new TestRequestPayload())->hydratePost($request->post());
+        $response = $this->testPipeline->process(TestPipeline::TEST_PIPELINE, $payload)->format();
 
         return response()->json($response, $response['status_code']);
     }

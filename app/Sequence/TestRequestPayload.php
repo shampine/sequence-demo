@@ -8,6 +8,15 @@ use Shampine\Sequence\Payload\AbstractPayload;
 
 class TestRequestPayload extends AbstractPayload
 {
+    private const WHITELIST = [
+        'name',
+        'age',
+    ];
+
+    private const OVERRIDES = [
+        'first_name' => 'name',
+    ];
+
     /**
      * @var string|null
      */
@@ -27,6 +36,14 @@ class TestRequestPayload extends AbstractPayload
      * @var User|null
      */
     protected ?User $user = null;
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct(self::WHITELIST, self::OVERRIDES);
+    }
 
     /**
      * @return string|null

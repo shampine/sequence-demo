@@ -6,7 +6,7 @@ namespace App\Sequence;
 use App\Models\User;
 use League\Pipeline\Pipeline;
 use Shampine\Sequence\Pipeline\AbstractPipeline;
-use Shampine\Sequence\Process\HydrateResponsePayloadProcess;
+use Shampine\Sequence\Process\HydrateResponseProcess;
 
 class TestPipeline extends AbstractPipeline
 {
@@ -32,7 +32,7 @@ class TestPipeline extends AbstractPipeline
                 return (new Pipeline)
                     ->pipe(new DoubleUserAge())
                     ->pipe(new CreateUser($user))
-                    ->pipe(new HydrateResponsePayloadProcess(TestResponsePayload::class));
+                    ->pipe(new HydrateResponseProcess(TestResponsePayload::class));
             },
         ];
     }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\Sequence;
 
 use App\Models\User;
-use Shampine\Sequence\Payload\AbstractResponsePayload;
+use Shampine\Sequence\Response\AbstractResponse;
 
-class TestResponsePayload extends AbstractResponsePayload
+class TestResponsePayload extends AbstractResponse
 {
     /**
      * @var User|null

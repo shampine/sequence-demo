@@ -38,8 +38,7 @@ class Controller extends BaseController
             'first_name' => 'name',
         ];
 
-        $requestPayload = (new TestRequestPayload($whitelist, $overrides))
-            ->hydratePost($request->post());
+        $requestPayload = (new TestRequestPayload($whitelist, $overrides))->hydratePost($request->post());
 
         $response = $this->testPipeline
                          ->process(TestPipeline::TEST_PIPELINE, $requestPayload)

@@ -16,21 +16,15 @@ class TestPipeline extends AbstractPipeline
     public const TEST_PIPELINE = 'TestPipeline';
 
     /**
-     * @var User
-     */
-    protected User $user;
-
-    /**
+     * @param UserService $userService
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(UserService $userService, User $user)
     {
-        $this->user = $user;
-
         $this->pipelines = [
-            self::TEST_PIPELINE => static function() use ($user) {
+            self::TEST_PIPELINE => static function() use ($userService, $user) {
                 return (new Pipeline)
-                    ->pipe(new DoubleUserAge())
+                    ->pipe(new DoubleUserAge($userService))
                     ->pipe(new CreateUser($user))
                     ->pipe(new HydrateResponseProcess(TestResponsePayload::class));
             },

@@ -10,6 +10,19 @@ use Shampine\Sequence\Support\StatusCode;
 class DoubleUserAge extends AbstractProcess
 {
     /**
+     * @var UserService
+     */
+    protected UserService $userService;
+
+    /**
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    /**
      * @param TestRequestPayload $payload
      * @return TestRequestPayload
      * @throws SequenceException
@@ -26,7 +39,9 @@ class DoubleUserAge extends AbstractProcess
             );
         }
 
-        $payload->setAge($age * 2);
+        $payload->setAge(
+            $this->userService->doubleUserAge($age)
+        );
 
         return $payload;
     }

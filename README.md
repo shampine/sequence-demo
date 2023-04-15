@@ -13,5 +13,3 @@ curl --location --request POST 'http://127.0.0.1:8000/api/test' \
 --form 'name="hello"' \
 --form 'age="5"'
 ```
-
-A full write up can be found on [Medium](https://medium.com/gosteady/day-5-sequence-how-to-guide-56c0af1b2303)

@@ -6,7 +6,7 @@ namespace App\Sequence;
 use App\Models\User;
 use Shampine\Sequence\Payload\AbstractPayload;
 
-class TestRequestPayload extends AbstractPayload
+class DemoPayload extends AbstractPayload
 {
     private const WHITELIST = [
         'name',

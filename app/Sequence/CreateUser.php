@@ -22,8 +22,8 @@ class CreateUser extends AbstractProcess
     }
 
     /**
-     * @param TestRequestPayload $payload
-     * @return TestRequestPayload
+     * @param DemoPayload $payload
+     * @return DemoPayload
      */
     public function process($payload)
     {

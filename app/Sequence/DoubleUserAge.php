@@ -23,8 +23,8 @@ class DoubleUserAge extends AbstractProcess
     }
 
     /**
-     * @param TestRequestPayload $payload
-     * @return TestRequestPayload
+     * @param DemoPayload $payload
+     * @return DemoPayload
      * @throws SequenceException
      */
     public function process($payload)

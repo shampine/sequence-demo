@@ -8,12 +8,12 @@ use League\Pipeline\Pipeline;
 use Shampine\Sequence\Pipeline\AbstractPipeline;
 use Shampine\Sequence\Process\HydrateResponseProcess;
 
-class TestPipeline extends AbstractPipeline
+class DemoPipeline extends AbstractPipeline
 {
     /**
      * @constant string
      */
-    public const TEST_PIPELINE = 'TestPipeline';
+    public const DEMO_PIPELINE = 'DemoPipeline';
 
     /**
      * @param UserService $userService
@@ -22,11 +22,11 @@ class TestPipeline extends AbstractPipeline
     public function __construct(UserService $userService, User $user)
     {
         $this->pipelines = [
-            self::TEST_PIPELINE => static function() use ($userService, $user) {
+            self::DEMO_PIPELINE => static function() use ($userService, $user) {
                 return (new Pipeline)
                     ->pipe(new DoubleUserAge($userService))
                     ->pipe(new CreateUser($user))
-                    ->pipe(new HydrateResponseProcess(TestResponsePayload::class));
+                    ->pipe(new HydrateResponseProcess(DemoResponse::class));
             },
         ];
     }

@@ -6,7 +6,7 @@ namespace App\Sequence;
 use App\Models\User;
 use Shampine\Sequence\Response\AbstractResponse;
 
-class TestResponsePayload extends AbstractResponse
+class DemoResponse extends AbstractResponse
 {
     /**
      * @var User|null
@@ -24,9 +24,9 @@ class TestResponsePayload extends AbstractResponse
     protected ?string $hobby = null;
 
     /**
-     * @param TestRequestPayload $payload
+     * @param DemoPayload $payload
      */
-    public function __construct(TestRequestPayload $payload)
+    public function __construct(DemoPayload $payload)
     {
         $this->setUser($payload->getUser());
         $this->setAge($payload->getAge());

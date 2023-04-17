@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Sequence\TestPipeline;
-use App\Sequence\TestRequestPayload;
+use App\Sequence\DemoPipeline;
+use App\Sequence\DemoPayload;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,14 +15,14 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * @var TestPipeline
+     * @var DemoPipeline
      */
-    protected TestPipeline $testPipeline;
+    protected DemoPipeline $testPipeline;
 
     /**
-     * @param TestPipeline $testPipeline
+     * @param DemoPipeline $testPipeline
      */
-    public function __construct(TestPipeline $testPipeline)
+    public function __construct(DemoPipeline $testPipeline)
     {
         $this->testPipeline = $testPipeline;
     }
@@ -33,8 +33,8 @@ class Controller extends BaseController
      */
     public function testPost(Request $request): JsonResponse
     {
-        $payload = (new TestRequestPayload())->hydratePost($request->post());
-        $response = $this->testPipeline->process(TestPipeline::TEST_PIPELINE, $payload)->format();
+        $payload = (new DemoPayload())->hydratePost($request->post());
+        $response = $this->testPipeline->process(DemoPipeline::DEMO_PIPELINE, $payload)->format();
 
         return response()->json($response, $response['status_code']);
     }
